@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <title>Plants vs. Zombies 3D</title>
+  <meta name="description" content="A fan-made 3D lawn-defense game built with Three.js. Plant, collect sun, and hold the line against the zombie horde." />
+  <meta name="theme-color" content="#5aa9f0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌻</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div id="vignette"></div>
+
+  <!-- In-game HUD -->
+  <div id="hud" class="hidden">
+    <div id="hud-top">
+      <div id="sun-panel" class="glass">
+        <div id="sun-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <g class="sun-rays">
+              <path d="M24 2v7M24 39v7M2 24h7M39 24h7M8.4 8.4l5 5M34.6 34.6l5 5M8.4 39.6l5-5M34.6 13.4l5-5" />
+            </g>
+            <circle cx="24" cy="24" r="10.5" />
+          </svg>
+        </div>
+        <div id="sun-count">0</div>
+      </div>
+
+      <div id="seed-tray" class="glass"></div>
+
+      <button id="shovel" class="glass tool" title="Shovel — dig up a plant (X)" aria-label="Shovel">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M12 36l12-12" stroke-width="4" stroke-linecap="round" />
+          <path d="M8 40l4-4 4 4-4 4z" fill="currentColor" />
+          <path d="M24 24l6-6 6 6-6 6z" fill="currentColor" />
+          <path d="M30 18l4-4" stroke-width="4" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <div id="hud-right">
+        <div id="level-panel" class="glass">
+          <div id="level-name">Level 1</div>
+          <div id="progress">
+            <div id="progress-fill"></div>
+            <div id="progress-flags"></div>
+            <div id="progress-head"></div>
+          </div>
+          <div id="wave-text">Get ready…</div>
+        </div>
+        <div id="hud-buttons">
+          <button id="btn-pause" class="glass tool" title="Pause (Esc)" aria-label="Pause">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="13" y="10" width="7" height="28" rx="2" fill="currentColor"/><rect x="28" y="10" width="7" height="28" rx="2" fill="currentColor"/></svg>
+          </button>
+          <button id="btn-mute" class="glass tool" title="Sound (M)" aria-label="Toggle sound">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M8 19h8l10-8v26l-10-8H8z" fill="currentColor" />
+              <path class="snd-wave" d="M31 17a9 9 0 010 14M35 12a15 15 0 010 24" stroke-width="3" stroke-linecap="round" fill="none" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="hint"></div>
+  </div>
+
+  <div id="banner"><span></span></div>
+  <div id="toast"></div>
+
+  <div id="overlay" class="visible">
+    <div id="overlay-card" class="glass"></div>
+  </div>
+
+  <div id="rotate-hint">
+    <div>🔄</div>
+    <p>Rotate your device to landscape for the best view of the lawn.</p>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
